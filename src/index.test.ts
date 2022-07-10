@@ -18,8 +18,8 @@ describe('test mocks', () => {
       }
     }))
 
-    shallowMount(Index)
+    shallowMount(Index, { global: { stubs: [ 'router-view' ] } })
 
-    expect(useRoute).toBeCalledTimes(1);
+    expect(useRoute).toBeCalledTimes(1)
   })
 })

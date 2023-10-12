@@ -4,7 +4,7 @@ import { shallowMount } from '@vue/test-utils'
 import Index from './index.vue'
 
 
-vi.mock('vue-router/dist/vue-router.mjs', () => ({
+vi.mock('vue-router', () => ({
   useRoute: () => ({
     params: { id: 1 },
   }),

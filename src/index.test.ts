@@ -4,22 +4,18 @@ import { shallowMount } from '@vue/test-utils'
 import Index from './index.vue'
 
 
-vi.mock('vue-router', () => ({
-  useRoute: vi.fn()
-}))
+vi.mock('vue-router/dist/vue-router.mjs', () => ({
+  useRoute: () => ({
+    params: { id: 1 },
+  }),
+}));
 
 describe('test mocks', () => {
   test('test mocks', () => {
 
-    // @ts-ignore
-    useRoute.mockImplementationOnce(() => ({
-      params: {
-        id: 1
-      }
-    }))
+    const wrapper = shallowMount(Index, { global: { stubs: [ 'router-view' ] } })
 
-    shallowMount(Index, { global: { stubs: [ 'router-view' ] } })
+    expect(wrapper.find("#param").text()).toBe('1')
 
-    expect(useRoute).toBeCalledTimes(1)
   })
 })
